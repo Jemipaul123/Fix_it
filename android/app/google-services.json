@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "562615193593",
+    "project_id": "fixit-30d1f",
+    "storage_bucket": "fixit-30d1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562615193593:android:90ae0c0e84a1f0c9f7f728",
+        "android_client_info": {
+          "package_name": "com.example.fix_it"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBes5OUZzLI1UMg1rwbVpAsItyT8NuzT1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
