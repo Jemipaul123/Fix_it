@@ -1,6 +1,6 @@
 # fix_it
 
-"A new Flutter project."
+"A Local Job Allocation App in Flutter and Firebase."
 
 ## Getting Started
 
