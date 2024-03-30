@@ -1,4 +1,4 @@
-# Fix - it
+# Fix - It
 
 "A Local Job Allocation App in Flutter and Firebase."
 
