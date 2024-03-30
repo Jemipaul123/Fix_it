@@ -1,3 +1,6 @@
+import 'package:fix_it/services/electrical.dart';
+import 'package:fix_it/services/gardening.dart';
+import 'package:fix_it/services/plumber.dart';
 import 'package:flutter/material.dart';
 import 'package:fix_it/services/cleaning.dart';
 
@@ -30,19 +33,28 @@ class _HomePageState extends State<HomePage> {
           ),
           ElevatedButton(
             onPressed: () {
-              // Add navigation to gardening page
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => GardeningPage()),
+              );
             },
             child: Text('Gardening'),
           ),
           ElevatedButton(
             onPressed: () {
-              // Add navigation to plumbing page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PlumberPage()),
+              );
             },
             child: Text('Plumbing'),
           ),
           ElevatedButton(
             onPressed: () {
-              // Add navigation to electrical page
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ElectricalPage()),
+              );
             },
             child: Text('Electrical'),
           ),

@@ -4,21 +4,21 @@ import 'package:fix_it/read_data/get_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CleaningPage extends StatefulWidget {
-  const CleaningPage({Key? key}) : super(key: key);
+class GardeningPage extends StatefulWidget {
+  const GardeningPage({Key? key}) : super(key: key);
 
   @override
-  State<CleaningPage> createState() => _CleaningPageState();
+  State<GardeningPage> createState() => _GardeningPageState();
 }
 
-class _CleaningPageState extends State<CleaningPage> {
+class _GardeningPageState extends State<GardeningPage> {
   final user = FirebaseAuth.instance.currentUser!;
   List<String> docIDs = [];
-  Map<String, String> firstNameMap = {}; // Map to store document ID and first name
+  Map<String, String> firstNameMap = {};
 
-  Future<void> getDocIdAndFirstName() async {
+  Future<void> getDocId() async {
     final QuerySnapshot<Map<String, dynamic>> snapshot =
-        await FirebaseFirestore.instance.collection('users').get();
+        await FirebaseFirestore.instance.collection('gardener').get();
     setState(() {
       docIDs = snapshot.docs.map((doc) => doc.id).toList();
       firstNameMap = Map.fromIterable(snapshot.docs,
@@ -46,7 +46,7 @@ class _CleaningPageState extends State<CleaningPage> {
   @override
   void initState() {
     super.initState();
-    getDocIdAndFirstName();
+    getDocId();
   }
 
   @override
@@ -60,7 +60,7 @@ class _CleaningPageState extends State<CleaningPage> {
           children: [
             SizedBox(height: 70),
             Text(
-              'Cleaning Services Near Me',
+              'Gardening Services Near Me',
               style: TextStyle(
                 fontSize: 23,
                 color: Colors.white,
@@ -68,31 +68,30 @@ class _CleaningPageState extends State<CleaningPage> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height:20),
+            SizedBox(height: 20),
             TextField(
-  decoration: InputDecoration(
-    labelText: 'Search',
-    labelStyle: TextStyle(color: Colors.white), // Label text style
-    suffixIcon: Icon(Icons.search),
-    filled: true,
-    fillColor: Colors.grey[900], // Light grey color for the text field
-    contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10), // Adjust padding
-    focusedBorder: OutlineInputBorder( // Border when the field is focused
-      borderSide: BorderSide(color: Colors.grey[300]!), // Adjust border color
-      borderRadius: BorderRadius.circular(8), // Adjust border radius
-    ),
-    enabledBorder: OutlineInputBorder( // Border when the field is not focused
-      borderSide: BorderSide(color: Colors.grey[300]!), // Adjust border color
-      borderRadius: BorderRadius.circular(8), // Adjust border radius
-    ),
-  ),
-  style: TextStyle(color: Colors.white), // Text color inside the field
-  onChanged: (value) {
-    filterDocIds(value);
-  },
-),
-            
-             Expanded(
+              decoration: InputDecoration(
+                labelText: 'Search',
+                labelStyle: TextStyle(color: Colors.white), // Label text style
+                suffixIcon: Icon(Icons.search),
+                filled: true,
+                fillColor: Colors.grey[900], // Light grey color for the text field
+                contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10), // Adjust padding
+                focusedBorder: OutlineInputBorder( // Border when the field is focused
+                  borderSide: BorderSide(color: Colors.grey[300]!), // Adjust border color
+                  borderRadius: BorderRadius.circular(8), // Adjust border radius
+                ),
+                enabledBorder: OutlineInputBorder( // Border when the field is not focused
+                  borderSide: BorderSide(color: Colors.grey[300]!), // Adjust border color
+                  borderRadius: BorderRadius.circular(8), // Adjust border radius
+                ),
+              ),
+              style: TextStyle(color: Colors.white), // Text color inside the field
+              onChanged: (value) {
+                filterDocIds(value);
+              },
+            ),
+            Expanded(
               child: docIDs.isEmpty
                   ? Center(child: Text('Result not found', style: TextStyle(color: Colors.white)))
                   : ListView.builder(
@@ -111,7 +110,7 @@ class _CleaningPageState extends State<CleaningPage> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 ListTile(
-                                  title: GetUserName(documentId: docIDs[index]),
+                                  title: GetGardening(documentId: docIDs[index]),
                                   subtitle: Text(
                                     'Additional Information',
                                     style: TextStyle(color: Colors.white70),

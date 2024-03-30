@@ -4,41 +4,38 @@ import 'package:fix_it/read_data/get_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CleaningPage extends StatefulWidget {
-  const CleaningPage({Key? key}) : super(key: key);
+class ElectricalPage extends StatefulWidget {
+  const ElectricalPage({Key? key}) : super(key: key);
 
   @override
-  State<CleaningPage> createState() => _CleaningPageState();
+  State<ElectricalPage> createState() => _ElectricalPageState();
 }
 
-class _CleaningPageState extends State<CleaningPage> {
+class _ElectricalPageState extends State<ElectricalPage> {
   final user = FirebaseAuth.instance.currentUser!;
   List<String> docIDs = [];
-  Map<String, String> firstNameMap = {}; // Map to store document ID and first name
+  Map<String, String> firstNameMap = {};
 
   Future<void> getDocIdAndFirstName() async {
     final QuerySnapshot<Map<String, dynamic>> snapshot =
-        await FirebaseFirestore.instance.collection('users').get();
+        await FirebaseFirestore.instance.collection('electrical').get();
     setState(() {
       docIDs = snapshot.docs.map((doc) => doc.id).toList();
-      firstNameMap = Map.fromIterable(snapshot.docs,
-          key: (doc) => doc.id,
-          value: (doc) => doc.data()['first name'].toString());
+      firstNameMap =Map.fromIterable(snapshot.docs,
+      key:(doc)=> doc.id,
+      value: (doc) => doc.data()['first name'].toString());
     });
   }
 
-  void filterDocIds(String query) {
+  void filterDocIds(String query){
     setState(() {
-      if (query.isEmpty) {
-        // If query is empty, show all users
-        docIDs = firstNameMap.keys.toList();
-      } else {
-        // Filter document IDs based on first name
-        docIDs = firstNameMap.entries
-            .where((entry) =>
-                entry.value.toLowerCase().contains(query.toLowerCase()))
-            .map((entry) => entry.key)
-            .toList();
+      if(query.isEmpty){
+        docIDs =firstNameMap.keys.toList();
+      }else{
+        docIDs=firstNameMap.entries
+        .where((entry) => entry.value.toLowerCase().contains(query.toLowerCase()))
+        .map((entry) => entry.key)
+        .toList();
       }
     });
   }
@@ -60,7 +57,7 @@ class _CleaningPageState extends State<CleaningPage> {
           children: [
             SizedBox(height: 70),
             Text(
-              'Cleaning Services Near Me',
+              'Electrical Services Near Me',
               style: TextStyle(
                 fontSize: 23,
                 color: Colors.white,
@@ -68,8 +65,8 @@ class _CleaningPageState extends State<CleaningPage> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height:20),
-            TextField(
+             SizedBox(height: 20),
+             TextField(
   decoration: InputDecoration(
     labelText: 'Search',
     labelStyle: TextStyle(color: Colors.white), // Label text style
@@ -91,8 +88,8 @@ class _CleaningPageState extends State<CleaningPage> {
     filterDocIds(value);
   },
 ),
-            
-             Expanded(
+           
+            Expanded(
               child: docIDs.isEmpty
                   ? Center(child: Text('Result not found', style: TextStyle(color: Colors.white)))
                   : ListView.builder(
@@ -111,7 +108,7 @@ class _CleaningPageState extends State<CleaningPage> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 ListTile(
-                                  title: GetUserName(documentId: docIDs[index]),
+                                  title: GetElectrical(documentId: docIDs[index]),
                                   subtitle: Text(
                                     'Additional Information',
                                     style: TextStyle(color: Colors.white70),

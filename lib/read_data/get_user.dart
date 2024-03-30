@@ -22,7 +22,7 @@ CollectionReference users =FirebaseFirestore.instance.collection('users');
      
       
         Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
-        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' ,style: TextStyle(color: Colors.white),);
+        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' ,style: TextStyle(color: Colors.white),);
      
     }
     return Text('Loading...');
@@ -30,3 +30,81 @@ CollectionReference users =FirebaseFirestore.instance.collection('users');
 );
   }
 }
+
+class Getusers2 extends StatelessWidget {
+  const Getusers2({required this.documentId});
+  final String documentId;
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference users2 =FirebaseFirestore.instance.collection('users2');
+
+
+   return FutureBuilder<DocumentSnapshot>(
+  future: users2.doc(documentId).get(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.done) {
+     
+      
+        Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'   +'yrs',style: TextStyle(color: Colors.white),);
+     
+    }
+    return Text('Loading...');
+  },
+);
+  }
+}
+
+class GetElectrical extends StatelessWidget {
+  const GetElectrical({required this.documentId});
+  final String documentId;
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference Electrical =FirebaseFirestore.instance.collection('electrical');
+
+
+   return FutureBuilder<DocumentSnapshot>(
+  future: Electrical.doc(documentId).get(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.done) {
+     
+      
+        Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' ,style: TextStyle(color: Colors.white),);
+     
+    }
+    return Text('Loading...');
+  },
+);
+  }
+}
+
+
+class GetGardening extends StatelessWidget {
+  const GetGardening({required this.documentId});
+  final String documentId;
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference Gardening =FirebaseFirestore.instance.collection('gardener');
+
+
+   return FutureBuilder<DocumentSnapshot>(
+  future: Gardening.doc(documentId).get(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.done) {
+     
+      
+        Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' ,style: TextStyle(color: Colors.white),);
+     
+    }
+    return Text('Loading...');
+  },
+);
+  }
+}
+
+
