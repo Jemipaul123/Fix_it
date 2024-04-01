@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fix_it/read_data/get_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../book1.dart'; // Import Book1 screen
 
 class CleaningPage extends StatefulWidget {
   const CleaningPage({Key? key}) : super(key: key);
@@ -68,33 +69,41 @@ class _CleaningPageState extends State<CleaningPage> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height:20),
+            SizedBox(height: 20),
             TextField(
-  decoration: InputDecoration(
-    labelText: 'Search',
-    labelStyle: TextStyle(color: Colors.white), // Label text style
-    suffixIcon: Icon(Icons.search),
-    filled: true,
-    fillColor: Colors.grey[900], // Light grey color for the text field
-    contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10), // Adjust padding
-    focusedBorder: OutlineInputBorder( // Border when the field is focused
-      borderSide: BorderSide(color: Colors.grey[300]!), // Adjust border color
-      borderRadius: BorderRadius.circular(8), // Adjust border radius
-    ),
-    enabledBorder: OutlineInputBorder( // Border when the field is not focused
-      borderSide: BorderSide(color: Colors.grey[300]!), // Adjust border color
-      borderRadius: BorderRadius.circular(8), // Adjust border radius
-    ),
-  ),
-  style: TextStyle(color: Colors.white), // Text color inside the field
-  onChanged: (value) {
-    filterDocIds(value);
-  },
-),
-            
-             Expanded(
+              decoration: InputDecoration(
+                labelText: 'Search',
+                labelStyle: TextStyle(color: Colors.white), // Label text style
+                suffixIcon: Icon(Icons.search),
+                filled: true,
+                fillColor: Colors.grey[900], // Light grey color for the text field
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 5, horizontal: 10), // Adjust padding
+                focusedBorder: OutlineInputBorder(
+                  // Border when the field is focused
+                  borderSide: BorderSide(color: Colors.grey[300]!),
+                  // Adjust border color
+                  borderRadius: BorderRadius.circular(8),
+                  // Adjust border radius
+                ),
+                enabledBorder: OutlineInputBorder(
+                  // Border when the field is not focused
+                  borderSide: BorderSide(color: Colors.grey[300]!),
+                  // Adjust border color
+                  borderRadius: BorderRadius.circular(8),
+                  // Adjust border radius
+                ),
+              ),
+              style: TextStyle(color: Colors.white), // Text color inside the field
+              onChanged: (value) {
+                filterDocIds(value);
+              },
+            ),
+            Expanded(
               child: docIDs.isEmpty
-                  ? Center(child: Text('Result not found', style: TextStyle(color: Colors.white)))
+                  ? Center(
+                      child: Text('Result not found',
+                          style: TextStyle(color: Colors.white)))
                   : ListView.builder(
                       itemCount: docIDs.length,
                       itemBuilder: (context, index) {
@@ -118,21 +127,24 @@ class _CleaningPageState extends State<CleaningPage> {
                                   ),
                                   leading: CircleAvatar(
                                     backgroundColor: Colors.white,
-                                    child: Icon(Icons.person, color: Color(0xFF00030E)),
+                                    child: Icon(Icons.person,
+                                        color: Color(0xFF00030E)),
                                   ),
                                   onTap: () {
                                     // Add onTap functionality
                                   },
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
                                   child: RatingBar.builder(
                                     initialRating: 3,
                                     minRating: 1,
                                     direction: Axis.horizontal,
                                     itemCount: 5,
                                     itemSize: 20.0,
-                                    itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                                    itemPadding:
+                                        EdgeInsets.symmetric(horizontal: 1.0),
                                     itemBuilder: (context, _) => Icon(
                                       Icons.star,
                                       color: Colors.amber,
@@ -145,15 +157,20 @@ class _CleaningPageState extends State<CleaningPage> {
                                 SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      // Add book functionality
-                                    },
-                                    child: Text('Book'),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Color.fromARGB(255, 45, 70, 160),
-                                      onPrimary: Colors.white,
-                                    ),
-                                  ),
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Book1(documentId: docIDs[index]),
+      ),
+    );
+  },
+  child: Text('Book'),
+  style: ElevatedButton.styleFrom(
+    primary: Color.fromARGB(255, 45, 70, 160),
+    onPrimary: Colors.white,
+  ),
+),
                                 ),
                               ],
                             ),
