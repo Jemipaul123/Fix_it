@@ -1,39 +1,39 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fix_it/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:fix_it/booking.dart'; // Import Booking widget
+import 'package:provider/provider.dart';
+import 'chatpage.dart'; // Import the chat page widget
 
-class Book1 extends StatelessWidget {
- 
-  final String? selectedDocID;
+class BookedServices extends StatefulWidget {
+  final String documentId;
 
-  const Book1({
-    Key? key,
-    required this.selectedDocID,
-  }) : super(key: key);
+  const BookedServices({Key? key, required this.documentId}) : super(key: key);
+
+  @override
+  _BookedServicesState createState() => _BookedServicesState();
+}
+
+class _BookedServicesState extends State<BookedServices> {
+  late BuildContext context;
 
   @override
   Widget build(BuildContext context) {
-    if (selectedDocID == null) {
-      // Handle the case where selectedDocID is null
-      return Scaffold(
-        body: Center(
-          child: Text('Error: selectedDocID is null!'),
-        ),
-      );
-    }
+    this.context = context;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Book Now', style: TextStyle(color: Colors.white)),
+        title: Text('Booked Services', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
       ),
       body: FutureBuilder<DocumentSnapshot>(
-        future: FirebaseFirestore.instance.collection('users').doc(selectedDocID).get(),
+        future: FirebaseFirestore.instance.collection('users').doc(widget.documentId).get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasData) {
               Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+              String status = data['Status'] == true ? 'Completed' : 'Pending';
+              Color statusColor = data['Status'] == true ? Colors.green : Colors.red;
               return Center(
                 child: Card(
                   color: Color(0xFF1B2154),
@@ -77,34 +77,31 @@ class Book1 extends StatelessWidget {
                           'Experience: ${data['experience']} yrs',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
-                        SizedBox(height: 20),
-                        RatingBar.builder(
-                          initialRating: 3,
-                          minRating: 1,
-                          direction: Axis.horizontal,
-                          itemCount: 5,
-                          itemSize: 30.0,
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                          onRatingUpdate: (rating) {
-                            // Implement rating update functionality if needed
-                          },
+                        Text(
+                          'Status: $status ',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                        Text(
+                          'Pending',
+                          style: TextStyle(fontSize: 18, color: statusColor),
                         ),
                         SizedBox(height: 20),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Booking(selectedDocID: selectedDocID!), // Pass both documentId and selectedDocID to Booking
-                                ),
-                              );
+                              // Get UID of the current user
+                              User? currentUser = FirebaseAuth.instance.currentUser;
+                              if (currentUser != null) {
+                                String uid = currentUser.uid;
+                                // Navigate to ChatPage with the UID
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ChatPage(uid: uid)),
+                                );
+                              }
                             },
-                            child: Text('Book'),
+                            child: Text('Chat'),
                             style: ElevatedButton.styleFrom(
                               primary: Color.fromARGB(255, 45, 70, 160),
                               onPrimary: Colors.white,

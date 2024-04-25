@@ -1,6 +1,8 @@
 import 'package:fix_it/auth/auth.dart';
 import 'package:fix_it/auth/login_or_register.dart';
+import 'package:fix_it/booking.dart';
 import 'package:fix_it/home_page.dart';
+import 'package:fix_it/services/splash.dart';
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'auth/login_or_register.dart';
@@ -32,7 +34,7 @@ class FixItApp extends StatelessWidget {
         // Change this to your desired accent color
         fontFamily: 'Roboto', // Change this to your desired font
       ),
-      home:AuthPage(), // Assuming you have a HomeScreen widget for the first page
+      home:SplashScreen(), // Assuming you have a HomeScreen widget for the first page
     );
   }
 }

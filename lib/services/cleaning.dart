@@ -16,6 +16,13 @@ class _CleaningPageState extends State<CleaningPage> {
   final user = FirebaseAuth.instance.currentUser!;
   List<String> docIDs = [];
   Map<String, String> firstNameMap = {}; // Map to store document ID and first name
+  String selectedDocID = ''; // Store the selected document ID
+
+  @override
+  void initState() {
+    super.initState();
+    getDocIdAndFirstName();
+  }
 
   Future<void> getDocIdAndFirstName() async {
     final QuerySnapshot<Map<String, dynamic>> snapshot =
@@ -25,6 +32,12 @@ class _CleaningPageState extends State<CleaningPage> {
       firstNameMap = Map.fromIterable(snapshot.docs,
           key: (doc) => doc.id,
           value: (doc) => doc.data()['first name'].toString());
+    });
+  }
+
+  void setSelectedDocID(String docID) {
+    setState(() {
+      selectedDocID = docID;
     });
   }
 
@@ -42,12 +55,6 @@ class _CleaningPageState extends State<CleaningPage> {
             .toList();
       }
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getDocIdAndFirstName();
   }
 
   @override
@@ -131,7 +138,7 @@ class _CleaningPageState extends State<CleaningPage> {
                                         color: Color(0xFF00030E)),
                                   ),
                                   onTap: () {
-                                    // Add onTap functionality
+                                    setSelectedDocID(docIDs[index]); // Store selected doc ID
                                   },
                                 ),
                                 Padding(
@@ -157,20 +164,23 @@ class _CleaningPageState extends State<CleaningPage> {
                                 SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Book1(documentId: docIDs[index]),
-      ),
-    );
-  },
-  child: Text('Book'),
-  style: ElevatedButton.styleFrom(
-    primary: Color.fromARGB(255, 45, 70, 160),
-    onPrimary: Colors.white,
-  ),
-),
+                                    onPressed: () {
+                                      setSelectedDocID(docIDs[index]); // Set selected doc ID
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              Book1(selectedDocID: selectedDocID),
+                                        ),
+                                      );
+                                    },
+                                    child: Text('Book'),
+                                    style: ElevatedButton.styleFrom(
+                                      primary:
+                                          Color.fromARGB(255, 45, 70, 160),
+                                      onPrimary: Colors.white,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),

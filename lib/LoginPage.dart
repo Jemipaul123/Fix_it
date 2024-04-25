@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
       builder: (context) => AlertDialog(
         title: Text(
           message,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[300],
+      backgroundColor: Color(0xFF1B2154),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -70,6 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Welcome to Fix It',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                         fontSize: 24
                       ),
                     ),
@@ -77,13 +78,15 @@ class _LoginPageState extends State<LoginPage> {
                       "You've been missed",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                         fontSize: 24,
                       ),
                     ),
                   ],
                 ),
                 Lottie.network(
-                  'https://lottie.host/41006c99-e812-4082-a9ea-2aa76b191260/j8LMiL1l3M.json',
+                  'https://lottie.host/a78ea018-65ee-466d-aded-1dca3745c121/BqvasGczpH.json',
+                 
                   height: 350,
                   width: 350,
                 ),
@@ -113,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       "Still not a member?",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white,),
                     ),
                     SizedBox(width: 4),
                     GestureDetector(

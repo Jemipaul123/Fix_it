@@ -77,7 +77,8 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[300],
+      backgroundColor: Color(0xFF1B2154),
+      
       body:SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -87,17 +88,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   
-                 
+                 SizedBox(height:35),
                   
                   Text("Create an account!",
                     style: GoogleFonts.poppins(
+                      color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 24
                   ),
                   ),
                  
                   Lottie.network(
-                    'https://lottie.host/a78ea018-65ee-466d-aded-1dca3745c121/BqvasGczpH.json',
+                    'https://lottie.host/eb91d82b-e0a4-4ebf-a323-6088faa2f898/a2gk8e76M0.json',
+                    
                     height: 290,
                     width: 290,
                   ),
@@ -124,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children:[
                         Text("Already have an account?",
-                          style: TextStyle(color: Colors.black),),
+                          style: TextStyle(color:  Colors.white,),),
       
                         const SizedBox(width: 4),
                         GestureDetector(
