@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart'; // Import the lottie package
+import 'package:google_fonts/google_fonts.dart'; // Import Google Fonts
 
 import 'package:fix_it/auth/auth.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
-  
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF00030E),
+      backgroundColor: Color.fromARGB(255, 233, 227, 244),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -21,8 +21,7 @@ class SplashScreen extends StatelessWidget {
                 Center(
                   child: Lottie.network( // Add Lottie animation here
                     'https://lottie.host/41006c99-e812-4082-a9ea-2aa76b191260/j8LMiL1l3M.json',
-                    
-                     // Path to your animation file
+                    // Path to your animation file
                     width: 300,
                     height: 300,
                     fit: BoxFit.cover,
@@ -30,11 +29,13 @@ class SplashScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20), // Adjust spacing as needed
                 Text(
-                  'Fix-It',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
+                  'Fix It',
+                  style: GoogleFonts.poppins( // Use GoogleFonts.poppins()
+                    textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -46,7 +47,7 @@ class SplashScreen extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF2D46A0),
+                    primary: Color(0xFF9352fc),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
@@ -58,12 +59,14 @@ class SplashScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Get Started',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
+                          style: GoogleFonts.poppins( // Use GoogleFonts.poppins()
+                            textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        Icon(Icons.arrow_forward, color: Colors.white), // Icon color set to white
+                        // Icon color set to white
                       ],
                     ),
                   ),

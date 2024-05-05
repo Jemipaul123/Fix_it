@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1B2154),
+      backgroundColor: Color.fromARGB(255, 233, 227, 244),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Welcome to Fix It',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 24
                       ),
                     ),
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                       "You've been missed",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 24,
                       ),
                     ),
@@ -114,20 +114,29 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Still not a member?",
-                      style: TextStyle(color: Colors.white,),
-                    ),
+                     Text(
+  "Still not a member",
+  style: GoogleFonts.poppins(
+    textStyle: TextStyle(
+      color: Colors.black,
+      // Add any additional styles here if needed
+    ),
+  ),
+),
                     SizedBox(width: 4),
                     GestureDetector(
                       onTap:widget.onTap,
                       child: Text(
-                        "Sign up",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
-                      ),
+  "Sign Up",
+  style: GoogleFonts.poppins(
+    textStyle: TextStyle(
+      color: Colors.blue,
+      fontWeight:FontWeight.w500,
+     
+      // Add any additional styles here if needed
+    ),
+  ),
+),
                     ),
                   ],
                 ),

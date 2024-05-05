@@ -60,7 +60,7 @@ class _CleaningPageState extends State<CleaningPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF00030E),
+      backgroundColor: Color.fromARGB(255, 233, 227, 244),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -71,7 +71,7 @@ class _CleaningPageState extends State<CleaningPage> {
               'Cleaning Services Near Me',
               style: TextStyle(
                 fontSize: 23,
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
@@ -80,10 +80,10 @@ class _CleaningPageState extends State<CleaningPage> {
             TextField(
               decoration: InputDecoration(
                 labelText: 'Search',
-                labelStyle: TextStyle(color: Colors.white), // Label text style
+                labelStyle: TextStyle(color: Colors.grey[500]), // Label text style
                 suffixIcon: Icon(Icons.search),
                 filled: true,
-                fillColor: Colors.grey[900], // Light grey color for the text field
+                fillColor: Colors.grey[100], // Light grey color for the text field
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 5, horizontal: 10), // Adjust padding
                 focusedBorder: OutlineInputBorder(
@@ -110,18 +110,18 @@ class _CleaningPageState extends State<CleaningPage> {
               child: docIDs.isEmpty
                   ? Center(
                       child: Text('Result not found',
-                          style: TextStyle(color: Colors.white)))
+                          style: TextStyle(color: Colors.black)))
                   : ListView.builder(
                       itemCount: docIDs.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Card(
-                            color: Color(0xFF1B2154),
+                            color: Colors.white,
                             elevation: 3,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: Colors.white, width: 1),
+                             
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -130,7 +130,7 @@ class _CleaningPageState extends State<CleaningPage> {
                                   title: GetUserName(documentId: docIDs[index]),
                                   subtitle: Text(
                                     'Additional Information',
-                                    style: TextStyle(color: Colors.white70),
+                                    style: TextStyle(color:Colors.grey[800] ),
                                   ),
                                   leading: CircleAvatar(
                                     backgroundColor: Colors.white,
@@ -161,27 +161,39 @@ class _CleaningPageState extends State<CleaningPage> {
                                     },
                                   ),
                                 ),
+                                SizedBox(height: 10,),
                                 SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    onPressed: () {
+                                  height: 50, 
+                                  width: 20,// Set the height to your desired value
+                                  child: GestureDetector(
+                                    onTap: () {
                                       setSelectedDocID(docIDs[index]); // Set selected doc ID
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              Book1(selectedDocID: selectedDocID),
+                                          builder: (context) => Book1(selectedDocID: selectedDocID),
                                         ),
                                       );
                                     },
-                                    child: Text('Book'),
-                                    style: ElevatedButton.styleFrom(
-                                      primary:
-                                          Color.fromARGB(255, 45, 70, 160),
-                                      onPrimary: Colors.white,
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.symmetric(horizontal: 12),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF9352fc),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Text(
+                                        'Book',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
+                                SizedBox(height: 10,),
                               ],
                             ),
                           ),

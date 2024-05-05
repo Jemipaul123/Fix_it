@@ -18,26 +18,27 @@ class ChatService extends ChangeNotifier {
       message: message,
     );
 
-    String chatRoomId = '';
+   
 
-    if (currentUserId.compareTo(receiverId) < 0) {
-      chatRoomId = '$currentUserId-$receiverId';
-    } else {
-      chatRoomId = '$receiverId-$currentUserId';
-    }
+    List<String> ids =[currentUserId,receiverId];
+    ids.sort();
 
-    await _firestore.collection('chat_rooms').doc(chatRoomId).collection('messages').add(newMessage.toMap());
+    String chatRoomId = ids.join(
+    "_"
+    );
+  await _firestore
+      .collection('chat_rooms')
+      .doc(chatRoomId)
+      .collection('messages')
+      .add(newMessage.toMap());
   }
 
-  Stream<QuerySnapshot> getMessages(String userId, String otherUserId) {
-    String chatRoomId = '';
 
-    if (userId.compareTo(otherUserId) < 0) {
-      chatRoomId = '$userId-$otherUserId';
-    } else {
-      chatRoomId = '$otherUserId-$userId';
-    }
+Stream<QuerySnapshot> getMessages(String userId, String otherUserId){
+  List<String> ids =[userId,otherUserId];
+  ids.sort();
+  String chatRoomId =ids.join('_');
 
-    return _firestore.collection('chat_rooms').doc(chatRoomId).collection('messages').orderBy('timestamp', descending: false).snapshots();
-  }
+  return _firestore.collection('chat_rooms').doc(chatRoomId).collection('messages').orderBy('timestamp', descending: false).snapshots();
+}
 }

@@ -22,7 +22,7 @@ CollectionReference users =FirebaseFirestore.instance.collection('users');
      
       
         Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
-        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' ,style: TextStyle(color: Colors.white),);
+        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' +'${data['location']}' ,style: TextStyle(color: Colors.black),);
      
     }
     return Text('Loading...');
@@ -47,7 +47,7 @@ class Getusers2 extends StatelessWidget {
      
       
         Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
-        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'   +'yrs',style: TextStyle(color: Colors.white),);
+        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'   +'yrs' +'${data['location']}',style: TextStyle(color: Colors.black),);
      
     }
     return Text('Loading...');
@@ -72,7 +72,7 @@ class GetElectrical extends StatelessWidget {
      
       
         Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
-        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' ,style: TextStyle(color: Colors.white),);
+        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' +'${data['location']}' ,style: TextStyle(color: Colors.black),);
      
     }
     return Text('Loading...');
@@ -98,7 +98,7 @@ class GetGardening extends StatelessWidget {
      
       
         Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
-        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' ,style: TextStyle(color: Colors.white),);
+        return Text('${data['first name']}' + ' ' + '${data['last name']}' +  '\n ' +'${data['job']}' +'\n ' +'${data['experience']}'  +'yrs' +'${data['location']}' ,style: TextStyle(color: Colors.black),);
      
     }
     return Text('Loading...');

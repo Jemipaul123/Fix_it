@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fix_it/auth/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -66,6 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
       displayMessage(e.code);
     }
   }
+ 
   void displayMessage(String message){
     showDialog(context: context,
       builder: (context)=> AlertDialog(
@@ -77,7 +79,9 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1B2154),
+       
+     
+      backgroundColor: Color.fromARGB(255, 233, 227, 244),
       
       body:SingleChildScrollView(
         child: SafeArea(
@@ -92,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   
                   Text("Create an account!",
                     style: GoogleFonts.poppins(
-                      color: Colors.white,
+                      color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 24
                   ),
@@ -126,19 +130,30 @@ class _RegisterPageState extends State<RegisterPage> {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                        Text("Already have an account?",
-                          style: TextStyle(color:  Colors.white,),),
+                       Text(
+  "Already have an account?",
+  style: GoogleFonts.poppins(
+    textStyle: TextStyle(
+      color: Colors.black,
+      // Add any additional styles here if needed
+    ),
+  ),
+),
       
                         const SizedBox(width: 4),
                         GestureDetector(
                           onTap: widget.onTap,
-                          child: const Text(
-                              "Login now",
-                              style:TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color:Colors.blue,
-                              )
-                          ),
+                          child:  Text(
+  "Login Now",
+  style: GoogleFonts.poppins(
+    textStyle: TextStyle(
+      color: Colors.blue,
+      fontWeight:FontWeight.w500,
+     
+      // Add any additional styles here if needed
+    ),
+  ),
+),
                         )
                       ]
                   )

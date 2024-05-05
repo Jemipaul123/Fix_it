@@ -1,3 +1,4 @@
+import 'package:fix_it/book1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fix_it/read_data/get_user.dart';
@@ -15,6 +16,7 @@ class _PlumberPageState extends State<PlumberPage> {
   final user = FirebaseAuth.instance.currentUser!;
   List<String> docIDs = [];
   Map<String, String> firstNameMap = {};
+  String selectedDocID = '';
 
    Future<void> getDocIdAndFirstName() async {
     final QuerySnapshot<Map<String, dynamic>> snapshot =
@@ -26,6 +28,12 @@ class _PlumberPageState extends State<PlumberPage> {
           value: (doc) => doc.data()['first name'].toString());
     });
   }
+   void setSelectedDocID(String docID) {
+    setState(() {
+      selectedDocID = docID;
+    });
+  }
+
 
    void filterDocIds(String query) {
     setState(() {
@@ -52,7 +60,7 @@ class _PlumberPageState extends State<PlumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF00030E),
+      backgroundColor: Color.fromARGB(255, 233, 227, 244),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -63,7 +71,7 @@ class _PlumberPageState extends State<PlumberPage> {
               'Plumber Services Near Me',
               style: TextStyle(
                 fontSize: 23,
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
@@ -72,10 +80,10 @@ class _PlumberPageState extends State<PlumberPage> {
   TextField(
   decoration: InputDecoration(
     labelText: 'Search',
-    labelStyle: TextStyle(color: Colors.white), // Label text style
+    labelStyle: TextStyle(color: const Color.fromARGB(255, 171, 169, 169)), // Label text style
     suffixIcon: Icon(Icons.search),
     filled: true,
-    fillColor: Colors.grey[900], // Light grey color for the text field
+    fillColor: Colors.white, // Light grey color for the text field
     contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10), // Adjust padding
     focusedBorder: OutlineInputBorder( // Border when the field is focused
       borderSide: BorderSide(color: Colors.grey[300]!), // Adjust border color
@@ -93,20 +101,22 @@ class _PlumberPageState extends State<PlumberPage> {
 ),
 
 
-            Expanded(
+           Expanded(
               child: docIDs.isEmpty
-                  ? Center(child: Text('Result not found', style: TextStyle(color: Colors.white)))
+                  ? Center(
+                      child: Text('Result not found',
+                          style: TextStyle(color: Colors.black)))
                   : ListView.builder(
                       itemCount: docIDs.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Card(
-                            color: Color(0xFF1B2154),
+                            color: Colors.white,
                             elevation: 3,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: Colors.white, width: 1),
+                             
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -115,25 +125,28 @@ class _PlumberPageState extends State<PlumberPage> {
                                   title: Getusers2(documentId: docIDs[index]),
                                   subtitle: Text(
                                     'Additional Information',
-                                    style: TextStyle(color: Colors.white70),
+                                    style: TextStyle(color:Colors.grey[800] ),
                                   ),
                                   leading: CircleAvatar(
                                     backgroundColor: Colors.white,
-                                    child: Icon(Icons.person, color: Color(0xFF00030E)),
+                                    child: Icon(Icons.person,
+                                        color: Color(0xFF00030E)),
                                   ),
                                   onTap: () {
-                                    // Add onTap functionality
+                                    setSelectedDocID(docIDs[index]); // Store selected doc ID
                                   },
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
                                   child: RatingBar.builder(
                                     initialRating: 3,
                                     minRating: 1,
                                     direction: Axis.horizontal,
                                     itemCount: 5,
                                     itemSize: 20.0,
-                                    itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                                    itemPadding:
+                                        EdgeInsets.symmetric(horizontal: 1.0),
                                     itemBuilder: (context, _) => Icon(
                                       Icons.star,
                                       color: Colors.amber,
@@ -143,19 +156,39 @@ class _PlumberPageState extends State<PlumberPage> {
                                     },
                                   ),
                                 ),
+                                SizedBox(height: 10,),
                                 SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      // Add book functionality
+                                  height: 50, 
+                                  width: 20,// Set the height to your desired value
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setSelectedDocID(docIDs[index]); // Set selected doc ID
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Book3(selectedDocID: selectedDocID),
+                                        ),
+                                      );
                                     },
-                                    child: Text('Book'),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Color.fromARGB(255, 45, 70, 160),
-                                      onPrimary: Colors.white,
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.symmetric(horizontal: 12),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF9352fc),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Text(
+                                        'Book',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
+                                SizedBox(height: 10,),
                               ],
                             ),
                           ),
