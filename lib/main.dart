@@ -44,7 +44,7 @@ class FixItApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SplashScreen(), // Assuming you have a HomeScreen widget for the first page
+      home: , // Assuming you have a HomeScreen widget for the first page
     );
   }
 }
