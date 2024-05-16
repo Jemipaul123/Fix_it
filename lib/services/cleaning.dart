@@ -31,7 +31,7 @@ class _CleaningPageState extends State<CleaningPage> {
       docIDs = snapshot.docs.map((doc) => doc.id).toList();
       firstNameMap = Map.fromIterable(snapshot.docs,
           key: (doc) => doc.id,
-          value: (doc) => doc.data()['first name'].toString());
+          value: (doc) => doc.data()['location'].toString());
     });
   }
 
@@ -79,7 +79,7 @@ class _CleaningPageState extends State<CleaningPage> {
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
-                labelText: 'Search',
+                labelText: 'Search by location',
                 labelStyle: TextStyle(color: Colors.grey[500]), // Label text style
                 suffixIcon: Icon(Icons.search),
                 filled: true,
@@ -101,7 +101,7 @@ class _CleaningPageState extends State<CleaningPage> {
                   // Adjust border radius
                 ),
               ),
-              style: TextStyle(color: Colors.white), // Text color inside the field
+              style: TextStyle(color: Colors.black), // Text color inside the field
               onChanged: (value) {
                 filterDocIds(value);
               },

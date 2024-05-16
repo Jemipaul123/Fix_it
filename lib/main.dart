@@ -1,5 +1,7 @@
 import 'package:fix_it/auth/auth.dart';
 import 'package:fix_it/auth/login_or_register.dart';
+import 'package:fix_it/auth/otpscreen.dart';
+import 'package:fix_it/auth/phoneauth.dart';
 import 'package:fix_it/booking.dart';
 import 'package:fix_it/home_page.dart';
 import 'package:fix_it/services/splash.dart';

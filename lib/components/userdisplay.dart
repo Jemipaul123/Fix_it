@@ -63,7 +63,7 @@ class UserDisplay extends StatelessWidget {
                     Center(
                       child: CircleAvatar(
                         radius: 50,
-                        backgroundColor: Color.fromARGB(219, 99, 68, 159),
+                        backgroundColor: Color.fromARGB(255, 39, 38, 38),
                         child: Icon(
                           Icons.person,
                           size: 50,

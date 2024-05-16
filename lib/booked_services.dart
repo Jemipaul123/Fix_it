@@ -154,7 +154,7 @@ class _BookedServices2State extends State<BookedServices2> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 233, 227, 244),
       appBar: AppBar(
-        title: Text('Booked Services ', style: TextStyle(color: Colors.white)),
+        title: Text('Booked Services ', style: TextStyle(color: Colors.black)),
         backgroundColor: Color.fromARGB(255, 233, 227, 244),
       ),
       body: FutureBuilder<DocumentSnapshot>(

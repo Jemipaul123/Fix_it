@@ -31,7 +31,7 @@ class _ElectricalPageState extends State<ElectricalPage> {
       docIDs = snapshot.docs.map((doc) => doc.id).toList();
       firstNameMap =Map.fromIterable(snapshot.docs,
       key:(doc)=> doc.id,
-      value: (doc) => doc.data()['first name'].toString());
+      value: (doc) => doc.data()['location'].toString());
     });
   }
     void setSelectedDocID(String docID) {
@@ -75,7 +75,7 @@ class _ElectricalPageState extends State<ElectricalPage> {
              SizedBox(height: 20),
              TextField(
   decoration: InputDecoration(
-    labelText: 'Search',
+    labelText: 'Search by location',
     labelStyle: TextStyle(color: const Color.fromARGB(255, 181, 179, 179)), // Label text style
     suffixIcon: Icon(Icons.search),
     filled: true,
@@ -90,7 +90,7 @@ class _ElectricalPageState extends State<ElectricalPage> {
       borderRadius: BorderRadius.circular(8), // Adjust border radius
     ),
   ),
-  style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)), // Text color inside the field
+  style: TextStyle(color: Colors.black), // Text color inside the field
   onChanged: (value) {
     filterDocIds(value);
   },

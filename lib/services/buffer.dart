@@ -1,12 +1,13 @@
-import 'package:fix_it/services/buffer.dart';
+import 'package:fix_it/auth/phoneauth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart'; // Import the lottie package
 import 'package:google_fonts/google_fonts.dart'; // Import Google Fonts
 
 import 'package:fix_it/auth/auth.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+
+class Buffer extends StatelessWidget {
+  const Buffer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class SplashScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Buffer()),
+                      MaterialPageRoute(builder: (context) => AuthPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -59,7 +60,39 @@ class SplashScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Get Started',
+                          'Sign in with mail',
+                          style: GoogleFonts.poppins( // Use GoogleFonts.poppins()
+                            textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        // Icon color set to white
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10), // Add spacing between buttons
+                ElevatedButton(
+                  onPressed: () {
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PhoneAuth()),);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF9352fc),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Sign in with OTP',
                           style: GoogleFonts.poppins( // Use GoogleFonts.poppins()
                             textStyle: TextStyle(
                               fontSize: 20,

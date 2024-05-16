@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:fix_it/auth/auth.dart';
 import 'package:fix_it/home_page.dart';
 import 'package:fix_it/worker/workerdetail.dart';
-import 'package:google_fonts/google_fonts.dart'; // Import Google Fonts package
+import 'package:google_fonts/google_fonts.dart'; 
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+// Import Google Fonts package
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -109,6 +112,7 @@ class WorkerOrCustomerPage extends StatelessWidget {
 }
 
 class UserDetails extends StatefulWidget {
+  
   const UserDetails({Key? key}) : super(key: key);
 
   @override
@@ -202,6 +206,7 @@ class _UserDetailsState extends State<UserDetails> {
             );
           });
           return Scaffold(
+
             body: Center(
               child: CircularProgressIndicator(),
             ),
@@ -275,21 +280,31 @@ class _UserDetailsState extends State<UserDetails> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  TextField(
-                    controller: locationController,
-                    style: TextStyle(color: Color(0xFF434754)),
-                    decoration: InputDecoration(
-                      hintText: 'Location',
-                      hintStyle: TextStyle(color: Colors.black),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                    ),
-                  ),
+                   SizedBox(height: 10),
+            TextField(
+              onTap: () async {
+            
+                final Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+                final List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+                final Placemark place = placemarks.first;
+                setState(() {
+                  locationController.text =
+                      '${place.subThoroughfare} ${place.thoroughfare}, ${place.locality}, ${place.administrativeArea} ${place.postalCode}, ${place.country}';
+                });
+              },
+              controller: locationController,
+              style: TextStyle(color: Color(0xFF434754)),
+              decoration: InputDecoration(
+                hintText: 'Location',
+                hintStyle: TextStyle(color: Colors.black),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+              ),
+            ),
                   SizedBox(height: 10),
                   TextField(
                     controller: phonenumberController,

@@ -25,7 +25,7 @@ class _GardeningPageState extends State<GardeningPage> {
       docIDs = snapshot.docs.map((doc) => doc.id).toList();
       firstNameMap = Map.fromIterable(snapshot.docs,
           key: (doc) => doc.id,
-          value: (doc) => doc.data()['first name'].toString());
+          value: (doc) => doc.data()['location'].toString());
     });
   }
   void setSelectedDocID(String docID) {
@@ -78,7 +78,7 @@ class _GardeningPageState extends State<GardeningPage> {
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
-                labelText: 'Search',
+                labelText: 'Search by location',
                 labelStyle: TextStyle(color: Color.fromARGB(255, 172, 170, 170)), // Label text style
                 suffixIcon: Icon(Icons.search),
                 filled: true,
@@ -93,7 +93,7 @@ class _GardeningPageState extends State<GardeningPage> {
                   borderRadius: BorderRadius.circular(8), // Adjust border radius
                 ),
               ),
-              style: TextStyle(color: Colors.white), // Text color inside the field
+              style: TextStyle(color: Colors.black), // Text color inside the field
               onChanged: (value) {
                 filterDocIds(value);
               },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fix_it/booked_services.dart'; // Import BookedServices screen
 import 'package:intl/intl.dart'; // Import DateFormat class
@@ -21,16 +20,15 @@ class _ChooseTime1State extends State<ChooseTime1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Color.fromARGB(255, 233, 227, 244),
+      backgroundColor: Color.fromARGB(255, 233, 227, 244),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (!showConfirmationMessage)
+            if (!showConfirmationMessage) ...[
               Text("${selectedTime.hour}:${selectedTime.minute}"),
-            if (!showConfirmationMessage)
               ElevatedButton(
-                child: const Text("Choose Time"),
+                child: const Text("Choose Time",style:TextStyle(color:Colors.white)),
                 onPressed: () async {
                   final TimeOfDay? timeOfDay = await showTimePicker(
                     context: context,
@@ -45,7 +43,6 @@ class _ChooseTime1State extends State<ChooseTime1> {
                   }
                 },
               ),
-            if (!showConfirmationMessage)
               ElevatedButton(
                 onPressed: () async {
                   setState(() {
@@ -100,9 +97,10 @@ class _ChooseTime1State extends State<ChooseTime1> {
                     }
                   });
                 },
-                child: const Text("Confirm"),
+                child: const Text("Confirm",style:TextStyle(color:Colors.white)),
               ),
-            if (showConfirmationMessage)
+            ],
+            if (showConfirmationMessage) ...[
               AlertDialog(
                 title: Text("Congratulations!"),
                 content: Text("Your help will soon find you"),
@@ -120,12 +118,16 @@ class _ChooseTime1State extends State<ChooseTime1> {
                   ),
                 ],
               ),
+            ],
           ],
         ),
       ),
     );
   }
 }
+
+// Repeat the same structure for ChooseTime2, ChooseTime3, and ChooseTime4 with appropriate changes for document IDs and collections
+
 class ChooseTime2 extends StatefulWidget {
   final String selectedDocID;
 
@@ -151,7 +153,7 @@ class _ChooseTime2State extends State<ChooseTime2> {
               Text("${selectedTime.hour}:${selectedTime.minute}"),
             if (!showConfirmationMessage)
               ElevatedButton(
-                child: const Text("Choose Time"),
+                child: const Text("Choose Time",style:TextStyle(color:Colors.white)),
                 onPressed: () async {
                   final TimeOfDay? timeOfDay = await showTimePicker(
                     context: context,
@@ -221,7 +223,7 @@ class _ChooseTime2State extends State<ChooseTime2> {
                     }
                   });
                 },
-                child: const Text("Confirm"),
+                child: const Text("Confirm",style:TextStyle(color:Colors.white)),
               ),
             if (showConfirmationMessage)
               AlertDialog(
@@ -273,7 +275,7 @@ class _ChooseTime3State extends State<ChooseTime3> {
               Text("${selectedTime.hour}:${selectedTime.minute}"),
             if (!showConfirmationMessage)
               ElevatedButton(
-                child: const Text("Choose Time"),
+                child: const Text("Choose Time",style:TextStyle(color:Colors.white)),
                 onPressed: () async {
                   final TimeOfDay? timeOfDay = await showTimePicker(
                     context: context,
@@ -343,7 +345,7 @@ class _ChooseTime3State extends State<ChooseTime3> {
                     }
                   });
                 },
-                child: const Text("Confirm"),
+                child: const Text("Confirm",style:TextStyle(color:Colors.white)),
               ),
             if (showConfirmationMessage)
               AlertDialog(
@@ -394,7 +396,7 @@ class _ChooseTime4State extends State<ChooseTime4> {
               Text("${selectedTime.hour}:${selectedTime.minute}"),
             if (!showConfirmationMessage)
               ElevatedButton(
-                child: const Text("Choose Time"),
+                child: const Text("Choose Time",style:TextStyle(color:Colors.white)),
                 onPressed: () async {
                   final TimeOfDay? timeOfDay = await showTimePicker(
                     context: context,
@@ -464,7 +466,7 @@ class _ChooseTime4State extends State<ChooseTime4> {
                     }
                   });
                 },
-                child: const Text("Confirm"),
+                child: const Text("Confirm",style:TextStyle(color:Colors.white)),
               ),
             if (showConfirmationMessage)
               AlertDialog(
